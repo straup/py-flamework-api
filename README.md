@@ -31,6 +31,7 @@ import flamework.api.client
 class oauth2_client(flamework.api.client.OAuth2):
 
 	def __init__(self, token, **kwargs):
+
 		kwargs['hostname'] = 'example.com'
 		kwargs['endpoint'] = '/rest'
 
