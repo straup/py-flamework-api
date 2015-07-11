@@ -4,22 +4,39 @@ Base class for flamework-api derived API classes
 
 ## Example
 
-	from flamework.api.client import OAuth2
+### Simple
 
-	api = OAuth2(ACCESS_TOKEN, hostname=HOSTNAME, endpoint=ENDPOINT)
+```
+from flamework.api.client import OAuth2
 
-	method = 'api.test.echo'
+HOSTNAME='api.collection.cooperhewitt.org'
+ENDPOINT='/rest'
 
-	args = {
-		'hello': 'world'
-	}
+TOKEN='S33KR3T'
 
-	rsp = api.execute_method(method, args)
-	print rsp
+api = OAuth2(ACCESS_TOKEN, hostname=HOSTNAME, endpoint=ENDPOINT)
 
-## TO DO
+method = 'cooperhewitt.labs.whatWouldMicahSay'
+args = {}
 
-* A proper `setup.py` file
+rsp = api.execute_method(method, args)
+print rsp
+```
+
+### Subclassing
+
+```
+import flamework.api.client
+
+class oauth2_client(flamework.api.client.OAuth2):
+
+      	def __init__(self, token, **kwargs):
+		kwargs['hostname'] = 'example.com'
+		kwargs['endpoint'] = '/rest'
+		flamework.api.client.OAuth2.__init__(self, token, **kwargs)
+```
+
+That's it.
 
 ## See also
 
